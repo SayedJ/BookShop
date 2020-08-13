@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BookShop_mvc.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<p>
+    <a href="@Url.Action("AddOrEdit","Book")" class="btn btn-default"><i class="fa fa-plus"></i> Create New</a>
+</p>
+
+<div class="container">
+
+    <h2 class="text-center"> Books</h2>
+
+    @foreach (var book in Model)
+    {
+
+<div class="col-md-4" style="border-top: 1px solid rgba(28, 110,164,0.46); border-radius: 23px">
+    <div style="text-align: center; border-bottom: 2px solid maroon">
+        <h4> @book.bookTitle</h4>
+    </div>
+    <div>
+        <div class="col-md-8 " style="padding-bottom: 1px; padding-top: 1px; margin-bottom: 1px; margin-top: 1px">
+
+            <img class="responsive" src="@Url.Content(book.bookImageContentType)" height="300" width="200" />
+        </div>
+
+        <div class="col-md-4" style="text-align: left">
+            <b style="font-family: Courier New, Courier, monospace">@book.bookDescription</b>
+            <h6 style="font-family: Calibri; font-style: italic">@book.bookAuthor</h6>
+
+        </div>
+    </div>
+
+        <div class="col-md-8" style="font-size: 18px; border-top: 2px solid maroon; padding: 2px">
+            <b style="font-size: 15px; font-style: oblique; font-family: 'Times New Roman', Times, serif">@book.bookPrice kr</b>
+        </div>
+        <div class="col-md-4" style="text-align: right; margin-bottom: 10px; border-top: 2px solid maroon; padding: 2px">
+            @*<input type="button" name="AddToCart" value="Add to Cart" class="btn btn-primary" id="btnAddToCart" onclick="AddtoCart(this)" />*@
+            <a href="@Url.Action("AddOrEdit", "Book", new { book.bookId })" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+            <a onclick="Delete(@book.bookId)" class="btn btn-default"><i class="fa fa-trash"></i></a>
+        </div> 
+    </div>
+
+                
+      }
+</div>
+
+
+@section scripts{
+    
+    <script>
+
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(success);
+        });
+
+            function Delete(id) {
+                alertify.confirm('Book Shop Online', 'Are you sure?', function () {
+                    window.location.href = '@Url.Action("Delete","Book")/' + id;
+                }, null);
+            }
+    </script>
+
+    }
+
+             
+
+       

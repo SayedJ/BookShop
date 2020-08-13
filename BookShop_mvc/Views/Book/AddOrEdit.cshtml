@@ -1,0 +1,67 @@
+﻿@model BookShop_mvc.Models.Book
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.bookId)
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookTitle)
+            @Html.EditorFor(model => model.bookTitle)
+            @Html.ValidationMessageFor(model => model.bookTitle)
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookAuthor)
+            @Html.EditorFor(model => model.bookAuthor)
+            @Html.ValidationMessageFor(model => model.bookAuthor)
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookPages)
+            @Html.EditorFor(model => model.bookPages)
+            @Html.ValidationMessageFor(model => model.bookPages)
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookDescription)
+            @Html.EditorFor(model => model.bookDescription)
+            @Html.ValidationMessageFor(model => model.bookDescription)
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookIsbn)
+            @Html.EditorFor(model => model.bookIsbn)
+            @Html.ValidationMessageFor(model => model.bookIsbn)
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookImageContentType)
+            @Html.EditorFor(model => model.bookImageContentType)
+            @Html.ValidationMessageFor(model => model.bookImageContentType)
+        </div>
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.bookPrice)
+            @Html.EditorFor(model => model.bookPrice)
+            @Html.ValidationMessageFor(model => model.bookPrice)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn button" />
+            <input type="reset" value="Reset" class="btn button" />
+        </div>
+    }
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
